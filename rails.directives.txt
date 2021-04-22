@@ -1,0 +1,6 @@
+#Crear un controlador
+rails generate controller Home index
+
+#agregar bootstrap
+yarn add bootstrap
+#luego importar bootstrap en app/javascrip/packs/application.js

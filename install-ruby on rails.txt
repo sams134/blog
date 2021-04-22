@@ -1,0 +1,52 @@
+#CAMBIAR TERMINAL
+chsh -s /bin/zsh
+
+
+#instalar xcode
+xcode-select --install
+
+#instalar homebrew
+#esto esta en pagina oficial de homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+install : brew install rbenv ruby-build
+update : brew upgrade ruby-build
+
+#colocar el path para zsh
+nano ~/.zshrc
+export PATH=$HOME/.rbenv/bin:/usr/local/bin:$HOME/.bin:$PATH
+
+# load rbenv automatically
+eval "$(rbenv init - zsh)"
+
+#cambiar version de ruby
+rbenv install 3.0.0
+
+#las versiones se instalan en Users/samuelmayorga/.rbenv/versions/
+
+#cambiamos la version global de ruby
+rbenv global 3.0.1
+
+#instalar rails
+gem install rails -v 6.1.3.1
+
+#para caerle ensima a viejas gemas
+gem pristine --all
+
+#crear proyecto blog
+rails new blog
+
+#instalar dependencias
+bundle install
+
+#install yarn
+brew install yarn
+#supuesto cambio en path
+#export PATH="$PATH:`yarn global bin`"
+
+#instalar webpacker.yml
+bundle exec rails webpacker:install
+
+#crear servidor
+rails server
+
